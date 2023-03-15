@@ -1,13 +1,13 @@
-const ConnectDB=()=>{
+const ConnectDB=async()=>{
     const mongoose=require('mongoose')
     require('dotenv/config')
     mongoose.set("strictQuery", false)
-    mongoose.connect(process.env.DATA_BASE,{useNewUrlParser: true,useUnifiedTopology:true},(err)=>{
-        if(!err){
-            console.log("Connect Successfully")
-        }else{
-            console.log('Error Connect With DataBase Error : '+err)
-        }
-    })
+    try{
+        const conn=await mongoose.connect(process.env.DATA_BASE)
+        console.log('MongoDB Connected :'+ conn.connection.host)
+    }catch(error){
+        console.log(error)
+        process.exit(1)
+    }
 }
 module.exports={ConnectDB}
