@@ -19,14 +19,15 @@ app.use('/userinfo',userInfo)
 app.use('/CO-7520-135',getMe)
 app.use('/room',room)
 app.use('/M-1351919175',userChat)
-// Connect with database
-ConnectDB()
-//Running Serveur
-app.listen(process.env.PORT,(err)=>{
-    if(!err){
-        console.log("Serveur Lance en port "+process.env.PORT)
-    }else{
-        console.log("Problem Lancement de serveur Error : "+err)
-    }
+// Connect with database + Running Serveur
+ConnectDB().then(()=>{
+    app.listen(process.env.PORT || 3000,(err)=>{
+        if(!err){
+            console.log("Serveur Lance en port "+process.env.PORT)
+        }else{
+            console.log("Problem Lancement de serveur Error : "+err)
+        }
+    })
 })
+
 
