@@ -1,7 +1,6 @@
 const express=require('express')
 const helmet = require("helmet");
 const cors =require('cors')
-const { ConnectDB } = require('./models/connect')
 const app=express()
 const userRegister=require('./router/userRegistre')
 const userInfo=require('./router/userInfo')
