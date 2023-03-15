@@ -31,7 +31,7 @@ app.use('/room',room)
 app.use('/M-1351919175',userChat)
 // Connect with database + Running Serveur
 ConnectDB().then(()=>{
-    app.listen(process.env.PORT || 3000,(err)=>{
+    app.listen(process.env.PORT,(err)=>{
         if(!err){
             console.log("Serveur Lance en port "+process.env.PORT)
         }else{
