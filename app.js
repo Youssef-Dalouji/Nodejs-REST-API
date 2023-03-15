@@ -8,8 +8,19 @@ const userInfo=require('./router/userInfo')
 const getMe=require('./router/getMe')
 const room=require('./router/room')
 const userChat=require('./router/userChat')
+const mongoose=require('mongoose')
+mongoose.set("strictQuery", false)
 require('dotenv/config')
 // Middleware Technique
+const ConnectDB=async()=>{
+    try{
+        const conn=await mongoose.connect(process.env.DATA_BASE,{useNewUrlParser: true,useUnifiedTopology:true})
+        console.log('MongoDB Connected :'+conn.connection.host)
+    }catch(error){
+        console.log(error)
+        process.exit(1)
+    }
+}
 app.use(express.json())
 app.use(cors())
 app.use(helmet())
